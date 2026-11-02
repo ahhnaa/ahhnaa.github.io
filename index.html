@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ana Kris Cabasag — Developer</title>
+<meta name="description" content="Portfolio of Ana Kris B. Cabasag, a 21-year-old BSCS student and developer from Can-olin, Candijay, Bohol. Founder of Kris Systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111114;
+    --surface2: #16161a;
+    --line: #222228;
+    --text: #ededf0;
+    --muted: #8b8b96;
+    --blue: #3b82f6;
+    --blue-soft: rgba(59,130,246,.14);
+    --sans: "Geist", system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font: 16px/1.6 var(--sans); overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  section { position: relative; padding: 120px 0; scroll-margin-top: 50px; overflow: hidden; }
+  .eyebrow { font: 500 12px var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--blue); }
+  h2 { font-size: clamp(30px, 4.6vw, 46px); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; margin: 10px 0 14px; }
+  .sub { color: var(--muted); max-width: 620px; }
+  .head { text-align: center; position: relative; z-index: 1; }
+  .head .sub { margin-inline: auto; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; transition: border-color .3s, translate .3s; }
+  .card:hover { border-color: #33333d; }
+  .mono { font-family: var(--mono); }
+
+  /* giant outlined words behind sections */
+  .ghost {
+    position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 0; pointer-events: none;
+    font: 800 clamp(90px, 17vw, 240px)/1 var(--sans); letter-spacing: -.04em; white-space: nowrap;
+    color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.06);
+  }
+  section > .wrap { position: relative; z-index: 1; }
+
+  /* nav */
+  header { position: fixed; inset: 0 0 auto; z-index: 30; transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
+  header.scrolled { background: rgba(9,9,11,.72); backdrop-filter: blur(14px); border-color: var(--line); }
+  nav { height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font: 600 17px var(--mono); }
+  .logo b { color: var(--blue); font-weight: 600; }
+  .links { display: flex; gap: 28px; list-style: none; font-size: 14px; }
+  .links a { color: var(--muted); transition: color .2s; }
+  .links a:hover, .links a.active { color: var(--text); }
+  .menu { display: none; background: none; border: 1px solid var(--line); color: var(--text); padding: 6px 12px; border-radius: 8px; font: inherit; }
+
+  /* hero */
+  #home { min-height: 100svh; display: flex; align-items: center; padding: 90px 0 60px; }
+  #home::before {
+    content: ""; position: absolute; width: 900px; height: 900px; left: 50%; top: 55%; translate: -50% -50%;
+    background: radial-gradient(circle, rgba(59,130,246,.16), transparent 60%); pointer-events: none;
+  }
+  .hero { display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 40px; }
+  .socials { display: flex; gap: 16px; color: var(--muted); }
+  .socials a:hover { color: var(--text); }
+  .hero .eyebrow { color: var(--muted); margin: 22px 0 14px; }
+  .hero h1 { font-size: clamp(46px, 7.4vw, 86px); font-weight: 800; letter-spacing: -.045em; line-height: 1; }
+  .hero h1 span { color: var(--blue); }
+  .role { font-size: clamp(19px, 2.4vw, 26px); color: #d4d4da; margin: 18px 0 8px; min-height: 1.5em; }
+  #typed { border-right: 2px solid var(--blue); padding-right: 4px; animation: caret 1s step-end infinite; }
+  @keyframes caret { 50% { border-color: transparent; } }
+  .fullname { color: var(--muted); margin-bottom: 30px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 10px;
+    font-weight: 500; font-size: 15px; border: 1px solid var(--line); background: var(--surface);
+    transition: translate .2s, background .2s, border-color .2s; cursor: pointer; color: var(--text); font-family: inherit;
+  }
+  .btn:hover { translate: 0 -2px; border-color: #3a3a44; }
+  .btn.primary { background: var(--text); color: #09090b; border-color: var(--text); }
+  .btn svg { transition: translate .2s; }
+  .btn:hover svg { translate: 3px 0; }
+  .scroll-hint { position: absolute; left: 50%; bottom: 28px; translate: -50% 0; width: 22px; height: 36px; border: 1.5px solid #3a3a44; border-radius: 12px; }
+  .scroll-hint::after { content: ""; position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: var(--muted); animation: wheel 1.8s ease-in-out infinite; }
+  @keyframes wheel { 60% { translate: 0 10px; opacity: 0; } 61% { translate: 0 0; opacity: 0; } }
+
+  /* hanging ID card */
+  .lanyard { position: relative; height: 560px; display: flex; justify-content: center; }
+  .swing { position: absolute; top: -150px; transform-origin: 50% 0; display: flex; flex-direction: column; align-items: center; will-change: transform; }
+  .strap {
+    width: 34px; height: 290px; background: linear-gradient(90deg, #1d4ed8, #3b82f6 50%, #1d4ed8);
+    display: grid; place-items: center; overflow: hidden;
+  }
+  .strap span { writing-mode: vertical-rl; font: 600 11px var(--mono); letter-spacing: .3em; color: rgba(255,255,255,.75); white-space: nowrap; }
+  .clip { width: 44px; height: 26px; margin-top: -4px; border-radius: 6px 6px 10px 10px; background: linear-gradient(#cfd3dc, #7d838f); box-shadow: inset 0 -3px 0 rgba(0,0,0,.25); }
+  .idcard {
+    width: 230px; margin-top: -6px; border-radius: 16px; overflow: hidden; background: #0e1220; border: 1px solid #263252;
+    box-shadow: 0 30px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.03); cursor: grab; touch-action: none; user-select: none;
+  }
+  .idcard:active { cursor: grabbing; }
+  .idcard .hole { width: 42px; height: 7px; border-radius: 4px; background: #05070d; margin: 10px auto 8px; }
+  .idcard .photo { position: relative; aspect-ratio: 3/4; margin: 0 12px; border-radius: 10px; overflow: hidden; background: #1a2236; }
+  .idcard .photo img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+  .idcard .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(14,18,32,.95)); }
+  .idcard .vert {
+    position: absolute; left: 6px; top: 8px; bottom: 8px; writing-mode: vertical-rl; rotate: 180deg; z-index: 1;
+    font: 800 30px/1 var(--sans); letter-spacing: .04em; color: var(--blue);
+  }
+  .idcard .hello { position: absolute; right: 10px; top: 10px; z-index: 1; font: 600 10px/1.3 var(--mono); text-align: right; color: #0e1220; }
+  .idcard .info { padding: 12px 16px 16px; }
+  .idcard .info b { display: block; font-size: 15px; letter-spacing: .02em; }
+  .idcard .info small { color: var(--muted); font: 11px var(--mono); }
+  .barcode { height: 22px; margin-top: 10px; background: repeating-linear-gradient(90deg, #cfd6e6 0 2px, transparent 2px 4px, #cfd6e6 4px 5px, transparent 5px 8px); opacity: .5; border-radius: 2px; }
+  .drag-hint { position: absolute; bottom: 0; font: 11px var(--mono); color: #55555f; letter-spacing: .1em; }
+
+  /* scroll-lit paragraph */
+  #intro { padding: 110px 0 60px; }
+  .lit { font-size: clamp(22px, 3.2vw, 34px); line-height: 1.35; letter-spacing: -.02em; text-align: center; max-width: 900px; margin-inline: auto; font-weight: 500; }
+  .lit b { font-weight: 700; }
+  .lit .w { opacity: .18; transition: opacity .15s linear; }
+
+  /* marquee */
+  .marquee { border-block: 1px solid var(--line); padding: 18px 0; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+  .marquee .track { display: flex; width: max-content; animation: slide 36s linear infinite; }
+  .marquee span { font: 500 13px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: #9a9aa6; padding: 0 22px; white-space: nowrap; display: flex; align-items: center; gap: 44px; }
+  .marquee span::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
+  @keyframes slide { to { translate: -50% 0; } }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 50px; }
+  .stat { display: flex; align-items: center; gap: 14px; padding: 18px; }
+  .ico { flex: none; width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--blue-soft); color: var(--blue); }
+  .stat b { display: block; font-size: 15px; }
+  .stat small { color: var(--muted); font-size: 13px; }
+
+  /* tech stack bento */
+  .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+  .bento .card { padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 360px; }
+  .bento .wide { grid-column: span 2; min-height: 0; }
+  .bento h3 { font-size: 18px; display: flex; align-items: center; gap: 10px; }
+  .bento p { color: var(--muted); font-size: 14px; }
+  .demo { margin-top: auto; border-radius: 12px; background: #0c0c0f; border: 1px solid var(--line); padding: 14px; position: relative; overflow: hidden; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips span { font: 12px var(--mono); padding: 4px 10px; border-radius: 99px; background: var(--surface2); border: 1px solid var(--line); color: #c4c4cc; }
+
+  .phone { width: 128px; height: 190px; margin: 0 auto; border-radius: 20px; border: 2px solid #2b2b33; background: #0f1422; padding: 14px 10px; display: flex; flex-direction: column; gap: 6px; }
+  .phone .bar { height: 8px; border-radius: 4px; background: #26304a; }
+  .phone .item { display: flex; justify-content: space-between; font: 9px var(--mono); color: #aab4cc; padding: 5px 6px; border-radius: 6px; background: #161d30; animation: pop 3.6s ease-in-out infinite; animation-delay: calc(var(--i) * .25s); }
+  .phone .total { margin-top: auto; font: 600 11px var(--mono); color: #fff; background: var(--blue); border-radius: 8px; padding: 6px; text-align: center; }
+  @keyframes pop { 0%, 100% { opacity: .55; } 15%, 60% { opacity: 1; } }
+
+  .browser .dots { display: flex; gap: 5px; margin-bottom: 12px; }
+  .browser .dots i { width: 8px; height: 8px; border-radius: 50%; background: #2c2c34; }
+  .sk { height: 10px; border-radius: 5px; margin-bottom: 8px; background: linear-gradient(90deg, #1b1b21 25%, #2a2a33 50%, #1b1b21 75%); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
+  .sk.big { height: 46px; }
+  .sk-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+
+  .term { font: 12px/1.7 var(--mono); color: #b9b9c3; min-height: 150px; }
+  .term .top { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .term .top i { width: 9px; height: 9px; border-radius: 50%; }
+  .term .top i:nth-child(1) { background: #ef4444; } .term .top i:nth-child(2) { background: #eab308; } .term .top i:nth-child(3) { background: #22c55e; }
+  .term .top small { margin-left: 8px; color: #6b6b75; }
+  .term button { margin-left: auto; font: 11px var(--mono); padding: 4px 10px; border-radius: 6px; border: 1px solid #2f4f8f; background: var(--blue-soft); color: #93c5fd; cursor: pointer; }
+  .term .out { white-space: pre; overflow-x: auto; }
+  .term .ok { color: #4ade80; }
+
+  .flow { display: flex; align-items: center; justify-content: space-between; position: relative; padding: 10px 6px; }
+  .flow::before { content: ""; position: absolute; left: 30px; right: 30px; top: 26px; height: 2px; background: #24242c; }
+  .flow .dot { position: absolute; top: 22px; left: 30px; width: 10px; height: 10px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 14px var(--blue); animation: travel 3.2s ease-in-out infinite; }
+  @keyframes travel { to { left: calc(100% - 40px); } }
+  .flow div { position: relative; text-align: center; font: 11px var(--mono); color: var(--muted); }
+  .flow div i { display: grid; place-items: center; width: 34px; height: 34px; margin: 0 auto 6px; border-radius: 50%; background: #15151a; border: 1px solid var(--line); font-style: normal; color: #c4c4cc; }
+
+  .basics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .basics span { font-size: 13px; color: #c4c4cc; padding: 10px 12px; border-radius: 10px; background: #0c0c0f; border: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .basics span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex: none; }
+
+  /* activity heatmap */
+  .activity { display: grid; grid-template-columns: 280px 1fr; gap: 16px; margin-top: 50px; }
+  .activity .big { padding: 24px; }
+  .activity .big strong { display: block; font-size: 64px; font-weight: 600; letter-spacing: -.04em; line-height: 1.1; }
+  .activity .mini { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .activity .mini .card { padding: 18px; }
+  .activity .mini b { font-size: 26px; }
+  .heat { padding: 22px; overflow-x: auto; }
+  .months { display: flex; justify-content: space-between; font: 11px var(--mono); color: var(--muted); margin: 14px 0 6px; min-width: 640px; }
+  .grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr); gap: 3px; min-width: 640px; }
+  .grid i { aspect-ratio: 1; border-radius: 2px; background: #18181d; opacity: 0; scale: .4; transition: opacity .4s, scale .4s; }
+  .grid.in i { opacity: 1; scale: 1; transition-delay: calc(var(--c) * 14ms); }
+  .grid i[data-l="1"] { background: #172554; } .grid i[data-l="2"] { background: #1e40af; }
+  .grid i[data-l="3"] { background: #2563eb; } .grid i[data-l="4"] { background: #60a5fa; }
+  .legend { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 12px; min-width: 640px; }
+
+  /* projects */
+  .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+  .project { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .project:hover { translate: 0 -6px; border-color: #2f4f8f; }
+  .tag { align-self: flex-start; font: 500 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #93c5fd; background: var(--blue-soft); padding: 4px 10px; border-radius: 6px; }
+  .project h3 { font-size: 19px; line-height: 1.3; }
+  .project p { color: var(--muted); font-size: 14px; }
+  .impact { border-left: 2px solid var(--blue); background: #0d1424; padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: 13px; color: #c7d2fe; }
+  .impact b { display: block; font: 600 11px var(--mono); letter-spacing: .12em; color: var(--blue); margin-bottom: 4px; }
+  .project .foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+  .project .foot a:last-child { color: var(--blue); }
+
+  /* services */
+  .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
+  .service { padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .service:hover { translate: 0 -6px; border-color: #2f4f8f; }
+  .service p { color: var(--muted); font-size: 14px; }
+  .service .price { margin-top: auto; padding-top: 12px; font-size: 13px; color: var(--muted); }
+  .service .price b { color: var(--text); font-size: 20px; }
+
+  /* timeline */
+  .timeline { position: relative; margin-top: 64px; }
+  .timeline::before, .timeline .fill { content: ""; position: absolute; left: 50%; top: 0; width: 2px; margin-left: -1px; background: #222228; height: 100%; }
+  .timeline .fill { background: linear-gradient(var(--blue), #60a5fa); height: 0; box-shadow: 0 0 12px rgba(59,130,246,.6); }
+  .step { position: relative; width: 50%; padding: 0 44px 56px 0; }
+  .step:nth-child(odd of .step) { margin-left: 50%; padding: 0 0 56px 44px; }
+  .step .node {
+    position: absolute; top: 18px; right: -17px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--bg); border: 1px solid var(--line); color: var(--muted); transition: all .4s;
+  }
+  .step:nth-child(odd of .step) .node { left: -17px; right: auto; }
+  .step.on .node { border-color: var(--blue); color: var(--blue); box-shadow: 0 0 0 5px var(--blue-soft); }
+  .step .card { padding: 22px; }
+  .step .when { font: 12px var(--mono); color: var(--blue); }
+  .step h3 { font-size: 18px; margin: 6px 0 2px; }
+  .step .org { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .step ul { padding-left: 18px; color: var(--muted); font-size: 14px; }
+
+  /* contact */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .contact .card { padding: 26px; }
+  form { display: grid; gap: 12px; }
+  label { font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+  input, textarea { width: 100%; background: #0c0c0f; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; color: var(--text); font: inherit; resize: vertical; }
+  input:focus, textarea:focus { outline: none; border-color: var(--blue); }
+  .rows { display: grid; gap: 10px; margin-top: 26px; }
+  .rows a, .rows div { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); transition: border-color .2s; font-size: 14px; }
+  .rows a:hover { border-color: #2f4f8f; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+  /* reveal */
+  .reveal { opacity: 0; }
+  .reveal.in { animation: up .8s var(--d, 0s) cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes up { from { opacity: 0; translate: 0 30px; } to { opacity: 1; translate: 0 0; } }
+
+  @media (max-width: 900px) {
+    section { padding: 90px 0; }
+    .hero, .contact, .activity { grid-template-columns: 1fr; }
+    .lanyard { order: -1; height: 510px; }
+    .swing { top: -70px; }
+    .strap { height: 170px; }
+    .idcard { width: 180px; }
+    .idcard .vert { font-size: 24px; }
+    .bento, .projects { grid-template-columns: 1fr; }
+    .bento .wide { grid-column: auto; }
+    .stats, .services { grid-template-columns: 1fr 1fr; }
+    .timeline::before, .timeline .fill { left: 17px; }
+    .step, .step:nth-child(odd of .step) { width: 100%; margin-left: 0; padding: 0 0 40px 56px; }
+    .step .node, .step:nth-child(odd of .step) .node { left: 0; right: auto; }
+    .links { position: absolute; top: 64px; inset-inline: 0; flex-direction: column; gap: 0; padding: 8px 16px 16px; background: rgba(9,9,11,.96); border-bottom: 1px solid var(--line); display: none; }
+    .links a { display: block; padding: 10px 0; }
+    .links.open { display: flex; }
+    .menu { display: block; }
+    #home { padding-top: 70px; }
+    .scroll-hint { display: none; }
+  }
+  @media (max-width: 520px) { .stats, .services { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal, .grid i { opacity: 1; scale: 1; }
+    .lit .w { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#home" class="logo">&lt;<b>Ana</b>.dev/&gt;</a>
+    <button class="menu" aria-expanded="false" aria-controls="links">Menu</button>
+    <ul class="links" id="links">
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="home">
+    <div class="wrap hero">
+      <div>
+        <div class="socials reveal">
+          <a href="https://github.com/" aria-label="GitHub" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C17.3 4.3 18.3 4.6 18.3 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+          <a href="https://linkedin.com/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4V9.5Z"/></svg></a>
+          <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#contact" aria-label="Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+        <p class="eyebrow reveal" style="--d:.08s">Can-olin · Candijay · Bohol</p>
+        <h1 class="reveal" style="--d:.16s">Hi, I'm <span>Ana.</span></h1>
+        <p class="role reveal" style="--d:.24s"><span id="typed">Full-Stack Developer</span></p>
+        <p class="fullname reveal" style="--d:.3s">Ana Kris B. Cabasag · 21 · BSCS 3B</p>
+        <div class="btns reveal" style="--d:.38s">
+          <a href="#projects" class="btn primary">View Projects</a>
+          <a href="#contact" class="btn">Contact Me <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="lanyard">
+        <div class="swing" id="swing">
+          <div class="strap"><span>ANA.DEV · KRIS SYSTEMS · ANA.DEV · KRIS SYSTEMS</span></div>
+          <div class="clip"></div>
+          <div class="idcard" id="idcard">
+            <div class="hole"></div>
+            <div class="photo">
+              <img src="assets/profile.jpg" alt="Photo of Ana Kris Cabasag" width="600" height="800" draggable="false">
+              <span class="vert">DEVELOPER</span>
+              <span class="hello">HELLO, I'M<br>ANA KRIS</span>
+            </div>
+            <div class="info">
+              <b>ANA KRIS B. CABASAG</b>
+              <small>BSCS 3B · Candijay, Bohol</small>
+              <div class="barcode"></div>
+            </div>
+          </div>
+        </div>
+        <span class="drag-hint">← DRAG ME →</span>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"></div>
+  </section>
+
+  <section id="intro">
+    <div class="wrap">
+      <p class="lit" id="lit">I'm a 21-year-old <b>BSCS 3B student</b> from Can-olin, Candijay, Bohol. Driven by curiosity and a love for solving problems, I help small businesses and people turn messy, manual work into <b>simple, reliable digital systems</b>. As a <b>full-stack developer</b>, I build everything from <b>clean user interfaces</b> to <b>solid databases</b> and the logic in between.</p>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Java</span><span>Python</span><span>C++</span><span>JavaScript</span><span>PHP</span><span>MySQL</span><span>HTML &amp; CSS</span><span>Flutter</span><span>Android Studio</span><span>Git</span><span>Figma</span><span>Firebase</span>
+      <span>Java</span><span>Python</span><span>C++</span><span>JavaScript</span><span>PHP</span><span>MySQL</span><span>HTML &amp; CSS</span><span>Flutter</span><span>Android Studio</span><span>Git</span><span>Figma</span><span>Firebase</span>
+    </div>
+  </div>
+
+  <div class="wrap stats">
+    <div class="card stat"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3zM8 7V4h8v3"/></svg></span><div><b><span data-to="8">8</span>+ Projects</b><small>Web, mobile &amp; systems</small></div></div>
+    <div class="card stat"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg></span><div><b>Clean Code</b><small>OOP, readable, tested</small></div></div>
+    <div class="card stat"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg></span><div><b>Reliable Systems</b><small>Secure logins, safe data</small></div></div>
+    <div class="card stat"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span><div><b>Always Learning</b><small>BSCS 3B, class of 2027</small></div></div>
+  </div>
+
+  <section id="stack">
+    <span class="ghost" data-ghost>TECH STACK</span>
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Skills &amp; Ecosystem</p>
+        <h2>My Tech Stack Ecosystem</h2>
+        <p class="sub">From mobile apps and web interfaces to the databases behind them. The tools I use to build things that actually work.</p>
+      </div>
+      <div class="bento">
+        <article class="card">
+          <h3><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>Mobile Apps</h3>
+          <p>Android apps with Java and Flutter, local storage with SQLite and cloud sync with Firebase.</p>
+          <div class="demo">
+            <div class="phone">
+              <div class="bar" style="width:60%"></div>
+              <div class="item" style="--i:0"><span>Bear Brand</span><span>₱13</span></div>
+              <div class="item" style="--i:1"><span>Lucky Me</span><span>₱16</span></div>
+              <div class="item" style="--i:2"><span>Kopiko 3in1</span><span>₱10</span></div>
+              <div class="item" style="--i:3"><span>Skyflakes</span><span>₱9</span></div>
+              <div class="total">Total ₱48</div>
+            </div>
+          </div>
+          <div class="chips"><span>Java</span><span>Flutter</span><span>SQLite</span><span>Firebase</span></div>
+        </article>
+        <article class="card">
+          <h3><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></span>Frontend</h3>
+          <p>Responsive, accessible interfaces with HTML, CSS and JavaScript, designed first in Figma.</p>
+          <div class="demo browser">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="sk" style="width:40%"></div>
+            <div class="sk big"></div>
+            <div class="sk-row"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
+            <div class="sk" style="width:70%"></div>
+          </div>
+          <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Figma</span></div>
+        </article>
+        <article class="card">
+          <h3><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>Backend &amp; Database</h3>
+          <p>PHP and Python on the server, MySQL for data. Try the query below.</p>
+          <div class="demo term">
+            <div class="top"><i></i><i></i><i></i><small>tindatrack.sql</small><button type="button" id="run">▶ Run query</button></div>
+            <div class="out" id="out">Click "Run query" to check low stock…</div>
+          </div>
+          <div class="chips"><span>PHP</span><span>Python</span><span>MySQL</span></div>
+        </article>
+        <article class="card wide">
+          <h3><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v6a3 3 0 0 0 3 3h6"/></svg></span>Tools &amp; Workflow</h3>
+          <p>Version control with Git and GitHub, and a simple plan → build → test → ship loop on every project.</p>
+          <div class="demo">
+            <div class="flow"><span class="dot"></span>
+              <div><i>1</i>Plan</div><div><i>2</i>Build</div><div><i>3</i>Test</div><div><i>4</i>Ship</div>
+            </div>
+          </div>
+          <div class="chips"><span>Git</span><span>GitHub</span><span>VS Code</span><span>Android Studio</span></div>
+        </article>
+        <article class="card" style="min-height:0">
+          <h3><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2Z"/></svg></span>CS Fundamentals</h3>
+          <div class="basics"><span>Data Structures</span><span>Algorithms</span><span>OOP</span><span>Databases</span><span>Networking</span><span>C++</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="activity" style="padding-top:0">
+    <span class="ghost" data-ghost>ACTIVITY</span>
+    <div class="wrap">
+      <div class="head reveal" style="text-align:left">
+        <p class="eyebrow">Consistency</p>
+        <h2>Coding Activity</h2>
+      </div>
+      <div class="activity">
+        <div class="reveal">
+          <div class="card big"><small class="mono" style="color:var(--muted)">LAST 365 DAYS</small><strong data-to="412">412</strong><span style="color:var(--muted)">commits this year</span></div>
+          <div class="mini"><div class="card"><small style="color:var(--muted)">Longest streak</small><br><b data-to="23">23</b> days</div><div class="card"><small style="color:var(--muted)">Active days</small><br><b data-to="61">61</b>%</div></div>
+        </div>
+        <div class="card heat reveal" style="--d:.1s">
+          <p style="color:var(--muted);font-size:14px">Class projects, personal builds and client systems, a little bit every week.</p>
+          <div class="months"><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
+          <div class="grid" id="grid"></div>
+          <div class="legend"><span>412 commits in the last year</span><span>Less ▪▪▪▪ More</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <span class="ghost" data-ghost>PROJECTS</span>
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Showcase</p>
+        <h2>Featured Projects</h2>
+        <p class="sub">Real problems from home and around Candijay, solved with code while studying BSCS.</p>
+      </div>
+      <div class="projects">
+        <article class="card project">
+          <span class="tag">System Focus</span>
+          <h3>TindaTrack: Sari-Sari Store POS &amp; Inventory</h3>
+          <p>A point-of-sale and inventory system for a family store. Tracks sales, low stock and <i>utang</i> (credit) per customer.</p>
+          <div class="chips"><span>PHP</span><span>MySQL</span><span>JavaScript</span></div>
+          <div class="impact"><b>RESULT / IMPACT</b>End-of-day counting went from about an hour to under 10 minutes.</div>
+          <div class="foot"><a href="#">Code</a><a href="#">Live Demo ↗</a></div>
+        </article>
+        <article class="card project">
+          <span class="tag">Web Focus</span>
+          <h3>BarangayQ: Health Center Queue</h3>
+          <p>A web app where patients get a queue number on their phone and see when it's their turn, instead of waiting in line.</p>
+          <div class="chips"><span>HTML/CSS</span><span>PHP</span><span>MySQL</span></div>
+          <div class="impact"><b>RESULT / IMPACT</b>Less crowding at the center during morning check-ups.</div>
+          <div class="foot"><a href="#">Code</a><a href="#">Live Demo ↗</a></div>
+        </article>
+        <article class="card project">
+          <span class="tag">Mobile Focus</span>
+          <h3>Iskolar: Student Planner App</h3>
+          <p>An Android app for tracking subjects, deadlines and group tasks, with reminders before each due date.</p>
+          <div class="chips"><span>Java</span><span>Android Studio</span><span>SQLite</span></div>
+          <div class="impact"><b>RESULT / IMPACT</b>Used by classmates in BSCS 3B to keep track of requirements.</div>
+          <div class="foot"><a href="#">Code</a><a href="#">Download APK ↓</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <span class="ghost" data-ghost>SERVICES</span>
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Kris Systems</p>
+        <h2>Simple systems for small businesses</h2>
+        <p class="sub">My one-person dev service for stores, schools and offices in Bohol. Fair prices, clear timelines, and I explain everything in plain Bisaya or English.</p>
+      </div>
+      <div class="services">
+        <article class="card service"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><h3>Custom Systems</h3><p>POS, inventory, enrollment or records systems built around how you already work.</p><p class="price">from <b>₱8,000</b></p></article>
+        <article class="card service"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><h3>Websites</h3><p>Fast, mobile-friendly sites for shops, resorts and organizations, launched and hosted.</p><p class="price">from <b>₱5,000</b></p></article>
+        <article class="card service"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span><h3>Mobile Apps</h3><p>Android apps for ordering, booking or tracking, ready to install on any phone.</p><p class="price">from <b>₱12,000</b></p></article>
+        <article class="card service"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4 2.5-2.5Z"/></svg></span><h3>IT Support</h3><p>PC setup, printer and Wi-Fi troubleshooting, and software installs for small offices.</p><p class="price">from <b>₱500</b></p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <span class="ghost" data-ghost>EXPERIENCE</span>
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Journey</p>
+        <h2>Experience &amp; Milestones</h2>
+        <p class="sub">How a curious student from Can-olin became a developer building systems for real people.</p>
+      </div>
+      <div class="timeline" id="timeline">
+        <div class="fill" id="fill"></div>
+        <div class="step reveal"><span class="node"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3zM8 7V4h8v3"/></svg></span>
+          <div class="card"><span class="when">2026 · Present</span><h3>Founder &amp; Developer</h3><p class="org">Kris Systems (freelance)</p>
+            <ul><li>Builds custom systems and websites for small businesses in Candijay.</li><li>Handles everything from requirements to deployment and training.</li></ul></div></div>
+        <div class="step reveal"><span class="node"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg></span>
+          <div class="card"><span class="when">2025</span><h3>First Client System</h3><p class="org">TindaTrack for a local sari-sari store</p>
+            <ul><li>Designed the database for products, sales and customer credit.</li><li>Trained the owners to use it on an old laptop.</li></ul></div></div>
+        <div class="step reveal"><span class="node"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
+          <div class="card"><span class="when">2024</span><h3>Student Developer</h3><p class="org">Class &amp; org projects</p>
+            <ul><li>Built web and Android apps for school requirements.</li><li>Learned Git, teamwork and how to ship on a deadline.</li></ul></div></div>
+        <div class="step reveal"><span class="node"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+          <div class="card"><span class="when">2023</span><h3>Started BS Computer Science</h3><p class="org">Bohol Island State University – Candijay Campus</p>
+            <ul><li>Wrote my first "Hello, World!" in C++.</li><li>Fell in love with turning ideas into working programs.</li></ul></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <span class="ghost" data-ghost>CONTACT</span>
+    <div class="wrap contact">
+      <div class="reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's build something useful.</h2>
+        <p class="sub">Need a system for your business, a website, or a developer for your team? Send a message and I'll reply within a day.</p>
+        <div class="rows">
+          <a href="https://github.com/" target="_blank" rel="noopener"><span class="ico">GH</span>github.com</a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener"><span class="ico">FB</span>facebook.com</a>
+          <div><span class="ico">📍</span>Can-olin, Candijay, Bohol, Philippines</div>
+        </div>
+      </div>
+      <div class="card reveal" style="--d:.1s">
+        <form id="form">
+          <label>Name <input name="name" required autocomplete="name"></label>
+          <label>Email <input name="email" type="email" required autocomplete="email"></label>
+          <label>Message <textarea name="message" rows="5" required></textarea></label>
+          <button class="btn primary" type="submit" style="justify-self:start">Send message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Ana Kris B. Cabasag · Kris Systems</span><span class="mono">&lt;Ana.dev/&gt;</span></div>
+</footer>
+
+<script>
+  // change this to the real inbox before submitting
+  const EMAIL = "your.email@example.com";
+
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
+  // nav
+  const menu = $(".menu"), links = $("#links");
+  menu.addEventListener("click", () => menu.setAttribute("aria-expanded", links.classList.toggle("open")));
+  links.addEventListener("click", e => { if (e.target.tagName === "A") links.classList.remove("open"); });
+
+  // typed roles
+  const roles = ["Full-Stack Developer", "Mobile App Developer", "Systems Builder", "BSCS Student"];
+  if (!still) (async () => {
+    const typed = $("#typed"), wait = ms => new Promise(r => setTimeout(r, ms));
+    for (let i = 0; ; i = (i + 1) % roles.length) {
+      for (let n = 1; n <= roles[i].length; n++) { typed.textContent = roles[i].slice(0, n); await wait(65); }
+      await wait(1800);
+      for (let n = roles[i].length; n >= 0; n--) { typed.textContent = roles[i].slice(0, n); await wait(30); }
+      await wait(250);
+    }
+  })();
+
+  // hanging ID card: damped pendulum you can grab and throw
+  const swing = $("#swing"), card = $("#idcard");
+  const small = innerWidth < 900;
+  let angle = small ? 0.12 : 0.35, vel = 0, drag = null;
+  if (!still) {
+    card.addEventListener("pointerdown", e => {
+      card.setPointerCapture(e.pointerId);
+      const r = swing.getBoundingClientRect();
+      drag = { x: r.left + r.width / 2, y: r.top };  // pivot = top of the strap
+    });
+    card.addEventListener("pointermove", e => {
+      if (!drag) return;
+      const max = small ? 0.45 : 1.1;
+      const a = Math.max(-max, Math.min(max, Math.atan2(drag.x - e.clientX, e.clientY - drag.y)));
+      vel = a - angle; angle = a;
+    });
+    const release = () => drag = null;
+    card.addEventListener("pointerup", release);
+    card.addEventListener("pointercancel", release);
+    (function tick(t) {
+      if (!drag) {
+        vel += -0.0025 * Math.sin(angle) + 0.00003 * Math.sin(t / 700);  // gravity + a light breeze
+        vel *= 0.99;
+        angle += vel;
+      }
+      swing.style.transform = `rotate(${angle}rad)`;
+      card.style.transform = `perspective(600px) rotateY(${vel * 260}deg)`;
+      requestAnimationFrame(tick);
+    })(0);
+  }
+
+  // split the intro paragraph into words that light up on scroll
+  const lit = $("#lit");
+  (function split(node) {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part.trim()) return frag.append(part);
+          const s = document.createElement("span"); s.className = "w"; s.textContent = part; frag.append(s);
+        });
+        n.replaceWith(frag);
+      } else split(n);
+    });
+  })(lit);
+  const words = [...lit.querySelectorAll(".w")];
+
+  // heatmap cells (deterministic pseudo-random so it looks the same every load)
+  const grid = $("#grid");
+  let seed = 7;
+  const rand = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  for (let c = 0; c < 52; c++) for (let r = 0; r < 7; r++) {
+    const busy = 0.35 + 0.5 * Math.sin(c / 6) ** 2;  // busier around exams and deadlines
+    const x = rand();
+    const i = document.createElement("i");
+    i.dataset.l = x > busy ? 0 : x > busy * .6 ? 1 : x > busy * .35 ? 2 : x > busy * .15 ? 3 : 4;
+    i.style.setProperty("--c", c);
+    grid.append(i);
+  }
+
+  // terminal demo
+  const out = $("#out"), run = $("#run");
+  const result = [
+    "> SELECT name, stock FROM products",
+    "  WHERE stock < 5 ORDER BY stock;",
+    "",
+    "  name            | stock",
+    "  ----------------+------",
+    "  Bear Brand 33g  |   2",
+    "  Kopiko 3in1     |   3",
+    "  Lucky Me Pancit |   4",
+    "",
+    "<span class=ok>✓ 3 rows · 0.004s</span>",
+  ];
+  run.addEventListener("click", async () => {
+    run.disabled = true; out.innerHTML = "";
+    for (const line of result) {
+      out.innerHTML += line + "\n";
+      if (!still) await new Promise(r => setTimeout(r, 140));
+    }
+    run.disabled = false;
+  });
+
+  // count up
+  function countUp(el) {
+    const to = +el.dataset.to, t0 = performance.now();
+    (function tick(t) {
+      const p = Math.min((t - t0) / 1500, 1);
+      el.textContent = Math.round(to * (1 - (1 - p) ** 3));
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  // reveal on scroll (+ stagger grid children)
+  $$(".bento, .projects, .services, .stats").forEach(g =>
+    [...g.children].forEach((c, i) => { c.classList.add("reveal"); c.style.setProperty("--d", i * 80 + "ms"); }));
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add("in");
+    if (!still) e.target.querySelectorAll("[data-to]").forEach(countUp);
+    io.unobserve(e.target);
+  }), { threshold: .15 });
+  $$(".reveal").forEach(el => io.observe(el));
+  new IntersectionObserver(([e], obs) => { if (e.isIntersecting) { grid.classList.add("in"); obs.disconnect(); } }, { threshold: .3 }).observe(grid);
+
+  // everything tied to scroll position
+  const header = $("header"), fill = $("#fill"), timeline = $("#timeline"), steps = $$(".step");
+  const ghosts = $$("[data-ghost]"), navLinks = $$(".links a"), sections = $$("main section[id]");
+  function onScroll() {
+    const vh = innerHeight;
+    header.classList.toggle("scrolled", scrollY > 20);
+
+    const r = lit.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (vh * 0.8 - r.top) / (r.height + vh * 0.25)));
+    words.forEach((w, i) => w.style.opacity = still ? 1 : Math.min(1, Math.max(.18, p * words.length - i + 1)));
+
+    ghosts.forEach(g => {
+      const s = g.parentElement.getBoundingClientRect();
+      const q = (vh - s.top) / (vh + s.height);  // 0 → 1 while the section crosses the screen
+      g.style.transform = `translateX(${(0.5 - q) * 30}%)`;
+    });
+
+    const t = timeline.getBoundingClientRect();
+    const filled = Math.min(t.height, Math.max(0, vh * 0.6 - t.top));
+    fill.style.height = filled + "px";
+    steps.forEach(s => s.classList.toggle("on", s.offsetTop + 30 < filled));
+
+    let current = "";
+    sections.forEach(s => { if (s.getBoundingClientRect().top < vh * 0.4) current = s.id; });
+    navLinks.forEach(a => a.classList.toggle("active", a.hash === "#" + current));
+  }
+  let ticking = false;
+  addEventListener("scroll", () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(); ticking = false; }); }
+  }, { passive: true });
+  addEventListener("resize", onScroll);
+  onScroll();
+
+  $("#form").addEventListener("submit", e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    location.href = `mailto:${EMAIL}?subject=${encodeURIComponent("Project inquiry from " + f.get("name"))}&body=${encodeURIComponent(f.get("message") + "\n\n— " + f.get("name") + " (" + f.get("email") + ")")}`;
+  });
+</script>
+</body>
+</html>
